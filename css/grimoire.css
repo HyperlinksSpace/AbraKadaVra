@@ -278,23 +278,116 @@ a:hover {
   border: 1px solid var(--ash);
   transition:
     border-color 0.35s var(--ease),
-    transform 0.35s var(--ease);
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+  transform-style: preserve-3d;
+  perspective: 900px;
 }
 
 .spell:hover {
   border-color: var(--copper);
   transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
-.spell-preview {
-  display: block;
+.preview-stage {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  background: var(--ink);
+  background: #050403;
+  overflow: hidden;
+  cursor: grab;
+  isolation: isolate;
+}
+
+.preview-stage.is-dragging,
+.stage.is-dragging,
+.preview-stage canvas.is-dragging,
+.stage canvas.is-dragging {
+  cursor: grabbing;
+}
+
+.spell-preview,
+.preview-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #050403;
+  touch-action: none;
+}
+
+.spell-preview.is-interactive,
+.stage canvas.is-interactive {
+  cursor: grab;
+}
+
+.interact-hint {
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  pointer-events: none;
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
+}
+
+.interact-hint.is-hidden {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+.hint-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.55rem;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone);
+  background: rgba(14, 12, 10, 0.72);
+  border: 1px solid rgba(196, 92, 38, 0.55);
+  backdrop-filter: blur(4px);
+  animation: hint-pulse 2.8s ease-in-out infinite;
+}
+
+.hint-pill.soft {
+  border-color: rgba(90, 158, 136, 0.5);
+  color: var(--bone-dim);
+  animation-delay: 0.4s;
+}
+
+@keyframes hint-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .spell-meta {
+  display: block;
   padding: 1.1rem 1.2rem 1.3rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.spell-meta .enter {
+  display: inline-block;
+  margin-top: 0.65rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper-hot);
 }
 
 .spell-meta h3 {
@@ -393,12 +486,56 @@ a:hover {
   background: #050403;
   border: 1px solid var(--ash);
   overflow: hidden;
+  cursor: grab;
+}
+
+.stage:hover {
+  border-color: rgba(196, 92, 38, 0.55);
 }
 
 .stage canvas {
   display: block;
   width: 100%;
   height: 100%;
+  touch-action: none;
+}
+
+.stage .interact-hint {
+  left: 1rem;
+  right: auto;
+  bottom: 1rem;
+  max-width: calc(100% - 2rem);
+}
+
+.interact-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--bone-dim);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.interact-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.interact-legend .dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 0;
+  background: var(--copper);
+  box-shadow: 0 0 0 1px rgba(196, 92, 38, 0.35);
 }
 
 .controls {

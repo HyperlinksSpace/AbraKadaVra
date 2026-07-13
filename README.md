@@ -12,6 +12,8 @@ This is **AbraKadaVra💀** — not a fractal museum of Mandelbrot cousins, not 
 
 Open the GitHub Pages root (this repo’s `index.html`) and step into the spells.
 
+Gallery previews and full spells are **living 3D fragments**: drag to orbit, hover to tilt, scroll to zoom. On-canvas hint pills and a legend under each stage spell out the gestures.
+
 | Spell | Principle | What you’re seeing |
 | --- | --- | --- |
 | **Chaos Sigil** | Sensitive dependence | Clifford / De Jong / Lorenz / Aizawa attractors — infinite ink from a few coupled equations |
