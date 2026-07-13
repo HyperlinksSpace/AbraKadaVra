@@ -142,10 +142,17 @@ a:hover {
 
 .lang-switch {
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 1.6rem;
-  transform: translateX(-50%);
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  animation: rise-in 1.6s var(--ease) 0.2s both;
+}
+
+.lang-switch-inner {
   display: inline-flex;
   align-items: center;
   gap: 0.15rem;
@@ -153,7 +160,7 @@ a:hover {
   background: rgba(14, 12, 10, 0.55);
   border: 1px solid var(--ash);
   backdrop-filter: blur(8px);
-  animation: rise-in 1.6s var(--ease) 0.2s both;
+  pointer-events: auto;
 }
 
 .lang-switch button {
