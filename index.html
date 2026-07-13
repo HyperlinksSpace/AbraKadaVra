@@ -19,36 +19,42 @@
   <body>
     <nav class="site-nav">
       <a class="brand-mark" href="index.html">AbraKadaVra<span class="skull">💀</span></a>
-      <a href="#spells">Enter the spells</a>
+      <a href="#spells" data-i18n="navEnter">Enter the spells</a>
     </nav>
 
     <header class="hero">
       <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-content">
-        <p class="hero-line">Digital Grimoire</p>
+        <p class="hero-line" data-i18n="heroLine">Digital Grimoire</p>
         <h1 class="hero-brand">AbraKadaVra<span class="skull">💀</span></h1>
-        <p class="hero-sub">
+        <p class="hero-sub" data-i18n="heroSub">
           Speak the name. Watch the universe answer — not with miracles, but with
           mathematics it already believed in.
         </p>
         <div class="cta-row">
-          <a class="btn" href="#spells">Open the grimoire</a>
-          <a class="btn btn-ghost" href="spells/chaos.html">First spell</a>
+          <a class="btn" href="#spells" data-i18n="ctaOpen">Open the grimoire</a>
+          <a class="btn btn-ghost" href="spells/chaos.html" data-i18n="ctaFirst">First spell</a>
         </div>
+      </div>
+
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
       </div>
     </header>
 
     <section class="section" id="spells">
       <div class="section-head">
-        <h2>Six spells</h2>
-        <p>
+        <h2 data-i18n="spellsTitle">Six spells</h2>
+        <p data-i18n="spellsLead">
           Each preview is a living 3D fragment — drag to orbit, hover to tilt,
           scroll to zoom, click to enter the full rite.
         </p>
       </div>
 
       <div class="spell-grid">
-        <article class="spell">
+        <article class="spell" data-i18n-spell="chaos">
           <div class="preview-stage" data-preview="chaos" data-href="spells/chaos.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -60,7 +66,7 @@
           </a>
         </article>
 
-        <article class="spell">
+        <article class="spell" data-i18n-spell="turing">
           <div class="preview-stage" data-preview="turing" data-href="spells/turing.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -72,7 +78,7 @@
           </a>
         </article>
 
-        <article class="spell">
+        <article class="spell" data-i18n-spell="phyllotaxis">
           <div class="preview-stage" data-preview="phyllotaxis" data-href="spells/phyllotaxis.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -84,7 +90,7 @@
           </a>
         </article>
 
-        <article class="spell">
+        <article class="spell" data-i18n-spell="gravity">
           <div class="preview-stage" data-preview="gravity" data-href="spells/gravity.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -96,7 +102,7 @@
           </a>
         </article>
 
-        <article class="spell">
+        <article class="spell" data-i18n-spell="waves">
           <div class="preview-stage" data-preview="waves" data-href="spells/waves.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -108,7 +114,7 @@
           </a>
         </article>
 
-        <article class="spell">
+        <article class="spell" data-i18n-spell="dla">
           <div class="preview-stage" data-preview="dla" data-href="spells/dla.html">
             <canvas class="spell-preview"></canvas>
           </div>
@@ -124,11 +130,18 @@
 
     <footer class="footer">
       <p>
-        <span class="brand">AbraKadaVra💀</span> — algorithms wearing a ritual mask.<br />
-        Inspired by curiosity, not copies. MIT. Open the console if you must.
+        <span class="brand">AbraKadaVra💀</span> —
+        <span data-i18n="footer" data-i18n-html
+          >algorithms wearing a ritual mask.<br />Inspired by curiosity, not copies. MIT. Open the
+          console if you must.</span
+        >
       </p>
     </footer>
 
+    <script type="module">
+      import { initI18n } from "./js/i18n.js";
+      initI18n();
+    </script>
     <script type="module" src="js/hero.js"></script>
     <script type="module" src="js/previews.js"></script>
   </body>

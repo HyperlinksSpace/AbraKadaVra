@@ -2,17 +2,40 @@
 
 **A digital grimoire of algorithm-generated beauty.**
 
+<p align="center">
+  <img src="assets/img/hero.png" alt="AbraKadaVra hero sigil" width="920" />
+</p>
+
 Speak the name. The universe does not clap for parlor tricks — it answers with the laws it was already running in the dark: chaos that never repeats, chemicals that invent their own skin, irrational angles that pack a sunflower, gravity that writes ellipses in smoke, waves that cancel into lace, and random walks that grow into bone.
 
 This is **AbraKadaVra💀** — not a fractal museum of Mandelbrot cousins, not a demoscene clone. Six spells. Six different principles. One ritual mask over real mathematics.
+
+**Languages on the site:** `EN` · `РУ` · `中文` (switcher at the bottom of the first screen).
 
 ---
 
 ## Live grimoire
 
-Open the GitHub Pages root (this repo’s `index.html`) and step into the spells.
+**Site:** https://hyperlinksspace.github.io/AbraKadaVra/
 
 Gallery previews and full spells are **living 3D fragments**: drag to orbit, hover to tilt, scroll to zoom. On-canvas hint pills and a legend under each stage spell out the gestures.
+
+## Showcase
+
+| Chaos Sigil | Turing Skin |
+|:-:|:-:|
+| <img src="assets/img/chaos.png" alt="Chaos Sigil" width="440" /> | <img src="assets/img/turing.png" alt="Turing Skin" width="440" /> |
+| Strange attractors | Reaction–diffusion morphogenesis |
+
+| Phyllotaxis Bone | Orbital Hex |
+|:-:|:-:|
+| <img src="assets/img/phyllotaxis.png" alt="Phyllotaxis Bone" width="440" /> | <img src="assets/img/gravity.png" alt="Orbital Hex" width="440" /> |
+| Golden-angle packing | Newtonian N-body dance |
+
+| Interference Veil | Bone Growth |
+|:-:|:-:|
+| <img src="assets/img/waves.png" alt="Interference Veil" width="440" /> | <img src="assets/img/dla.png" alt="Bone Growth" width="440" /> |
+| Wave superposition | Diffusion-limited aggregation |
 
 | Spell | Principle | What you’re seeing |
 | --- | --- | --- |
@@ -52,17 +75,24 @@ npx serve .
 
 Then open `http://localhost:8080`.
 
-Modules are ES modules — file:// may block them in some browsers; use a local server.
+Modules are ES modules — `file://` may block them in some browsers; use a local server.
+
+Regenerate README showcase images:
+
+```bash
+python scripts/gen_readme_images.py
+```
 
 ---
 
 ## Structure
 
 ```
-index.html          # landing grimoire
+index.html          # landing grimoire (+ EN / РУ / 中文)
 css/grimoire.css    # shared ritual theme
-js/                 # hero + gallery previews + utilities
+js/                 # hero, previews, i18n, utilities
 spells/             # six interactive canvases
+assets/img/         # README showcase frames
 ```
 
 GitHub Pages: serve from the repository root. No build step.

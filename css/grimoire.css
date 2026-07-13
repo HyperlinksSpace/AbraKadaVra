@@ -121,7 +121,7 @@ a:hover {
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 4rem 1.5rem 3rem;
+  padding: 4rem 1.5rem 5.5rem;
 }
 
 .hero-canvas {
@@ -138,6 +138,55 @@ a:hover {
   text-align: center;
   max-width: 42rem;
   animation: rise-in 1.4s var(--ease) both;
+}
+
+.lang-switch {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.3rem;
+  background: rgba(14, 12, 10, 0.55);
+  border: 1px solid var(--ash);
+  backdrop-filter: blur(8px);
+  animation: rise-in 1.6s var(--ease) 0.2s both;
+}
+
+.lang-switch button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--bone-dim);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  transition:
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+.lang-switch button:hover {
+  color: var(--bone);
+  border-color: rgba(196, 92, 38, 0.45);
+}
+
+.lang-switch button.is-active {
+  color: var(--ink);
+  background: var(--copper);
+  border-color: var(--copper-hot);
+}
+
+.lang-switch button:focus-visible {
+  outline: 1px solid var(--verdigris-lit);
+  outline-offset: 2px;
 }
 
 @keyframes rise-in {
