@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bone Growth — AbraKadaVra💀</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/grimoire.css" />
+  </head>
+  <body class="spell-page">
+    <nav class="site-nav">
+      <a class="brand-mark" href="../index.html">AbraKadaVra<span class="skull">💀</span></a>
+      <a href="../index.html#spells">All spells</a>
+    </nav>
+
+    <header class="spell-header">
+      <p class="law">Aggregation · Random walk</p>
+      <h1>Bone Growth</h1>
+      <p>
+        Diffusion-limited aggregation: walkers stumble until they touch the
+        structure, then freeze. From that sticky rule grow lightning forks, coral
+        fans, frost on glass — chance wearing the mask of intention.
+      </p>
+    </header>
+
+    <div class="stage-wrap">
+      <div class="stage">
+        <canvas id="c"></canvas>
+      </div>
+      <div class="controls">
+        <div class="control">
+          <label for="stick">Stickiness <span class="val" id="stick-val"></span></label>
+          <input id="stick" type="range" min="0.1" max="1" step="0.05" value="1" />
+        </div>
+        <div class="control">
+          <label for="rate">Growth rate <span class="val" id="rate-val"></span></label>
+          <input id="rate" type="range" min="1" max="40" step="1" value="12" />
+        </div>
+        <div class="control">
+          <label for="seedMode">Seed</label>
+          <select id="seedMode">
+            <option value="center">Center spark</option>
+            <option value="line">Horizon bone</option>
+            <option value="ring">Ritual ring</option>
+          </select>
+        </div>
+        <div class="control">
+          <label>&nbsp;</label>
+          <button type="button" id="reset">Regrow</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="spell-footer">AbraKadaVra💀 · Bone Growth · Witten–Sander DLA</p>
+    <script type="module" src="dla.js"></script>
+  </body>
+</html>

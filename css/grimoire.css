@@ -1,0 +1,476 @@
+:root {
+  --ink: #0e0c0a;
+  --ink-2: #1a1612;
+  --ash: #2c261f;
+  --bone: #e8dcc8;
+  --bone-dim: #b8a990;
+  --copper: #c45c26;
+  --copper-hot: #e07840;
+  --verdigris: #3d7a68;
+  --verdigris-lit: #5a9e88;
+  --blood: #8b2e2e;
+  --smoke: rgba(232, 220, 200, 0.08);
+  --font-display: "Cinzel", "Palatino Linotype", Palatino, serif;
+  --font-body: "Spectral", Georgia, serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, #2a2218 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, #1a2a24 0%, transparent 45%),
+    radial-gradient(ellipse 50% 35% at 0% 80%, #2a1814 0%, transparent 40%),
+    var(--ink);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a {
+  color: var(--copper-hot);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 0.25s var(--ease);
+}
+
+a:hover {
+  color: var(--bone);
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(14, 12, 10, 0.92), transparent);
+  pointer-events: none;
+}
+
+.site-nav a {
+  pointer-events: auto;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-dim);
+}
+
+.site-nav a:hover {
+  color: var(--copper-hot);
+}
+
+.brand-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--bone) !important;
+}
+
+.brand-mark .skull {
+  display: inline-block;
+  margin-left: 0.15em;
+  animation: pulse-skull 4s ease-in-out infinite;
+}
+
+@keyframes pulse-skull {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* ——— Landing hero ——— */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 4rem 1.5rem 3rem;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 42rem;
+  animation: rise-in 1.4s var(--ease) both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-brand {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: var(--bone);
+  text-shadow: 0 0 60px rgba(196, 92, 38, 0.35);
+}
+
+.hero-brand .skull {
+  display: inline-block;
+  animation: pulse-skull 3.5s ease-in-out infinite;
+}
+
+.hero-line {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.hero-sub {
+  margin: 0 auto 2rem;
+  max-width: 28rem;
+  font-size: 1.1rem;
+  color: var(--bone-dim);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--copper);
+  color: var(--bone);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.btn:hover {
+  background: var(--copper);
+  color: var(--ink);
+  border-color: var(--copper-hot);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  border-color: var(--ash);
+  color: var(--bone-dim);
+}
+
+.btn-ghost:hover {
+  border-color: var(--verdigris);
+  background: var(--verdigris);
+  color: var(--bone);
+}
+
+/* ——— Spells gallery ——— */
+.section {
+  position: relative;
+  padding: 4rem 1.5rem 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-head {
+  margin-bottom: 2.5rem;
+  max-width: 36rem;
+}
+
+.section-head h2 {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--bone-dim);
+  font-size: 1.05rem;
+}
+
+.spell-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.spell-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.spell {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--ink-2), #12100e);
+  border: 1px solid var(--ash);
+  transition:
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.spell:hover {
+  border-color: var(--copper);
+  transform: translateY(-4px);
+}
+
+.spell-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--ink);
+}
+
+.spell-meta {
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.spell-meta h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.spell-meta .law {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verdigris-lit);
+}
+
+.spell-meta p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--bone-dim);
+}
+
+.footer {
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+  border-top: 1px solid var(--ash);
+  color: var(--bone-dim);
+  font-size: 0.9rem;
+}
+
+.footer .brand {
+  font-family: var(--font-display);
+  letter-spacing: 0.1em;
+  color: var(--bone);
+}
+
+/* ——— Spell pages ——— */
+.spell-page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.spell-header {
+  position: relative;
+  z-index: 10;
+  padding: 4.5rem 1.5rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.spell-header h1 {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.spell-header .law {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--verdigris-lit);
+}
+
+.spell-header p {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--bone-dim);
+  font-size: 1rem;
+}
+
+.stage-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1rem 1rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 10;
+  background: #050403;
+  border: 1px solid var(--ash);
+  overflow: hidden;
+}
+
+.stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  padding: 1rem 0 0.5rem;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 120px;
+}
+
+.control label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+}
+
+.control input[type="range"] {
+  width: 140px;
+  accent-color: var(--copper);
+}
+
+.control select,
+.control button {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.7rem;
+  color: var(--bone);
+  background: var(--ink-2);
+  border: 1px solid var(--ash);
+  cursor: pointer;
+}
+
+.control button:hover,
+.control select:hover {
+  border-color: var(--copper);
+}
+
+.control .val {
+  font-variant-numeric: tabular-nums;
+  color: var(--copper-hot);
+  font-size: 0.8rem;
+}
+
+.spell-footer {
+  padding: 1rem 1.5rem 2rem;
+  text-align: center;
+  color: var(--bone-dim);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .hero-brand {
+    letter-spacing: 0.03em;
+  }
+
+  .controls {
+    justify-content: flex-start;
+  }
+
+  .stage {
+    aspect-ratio: 4 / 5;
+  }
+}

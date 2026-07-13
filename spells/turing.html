@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Turing Skin — AbraKadaVra💀</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/grimoire.css" />
+  </head>
+  <body class="spell-page">
+    <nav class="site-nav">
+      <a class="brand-mark" href="../index.html">AbraKadaVra<span class="skull">💀</span></a>
+      <a href="../index.html#spells">All spells</a>
+    </nav>
+
+    <header class="spell-header">
+      <p class="law">Morphogenesis · Reaction–diffusion</p>
+      <h1>Turing Skin</h1>
+      <p>
+        Alan Turing asked how an embryo paints itself. Two chemicals — activator
+        and inhibitor — diffuse at different speeds and suddenly the void grows
+        spots, stripes, labyrinths. Nature’s first Photoshop filter.
+      </p>
+    </header>
+
+    <div class="stage-wrap">
+      <div class="stage">
+        <canvas id="c"></canvas>
+      </div>
+      <div class="controls">
+        <div class="control">
+          <label for="preset">Pattern</label>
+          <select id="preset">
+            <option value="spots">Leopard spots</option>
+            <option value="stripes">Zebra stripes</option>
+            <option value="maze">Labyrinth</option>
+            <option value="coral">Coral bloom</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="speed">Tempo <span class="val" id="speed-val"></span></label>
+          <input id="speed" type="range" min="1" max="12" step="1" value="6" />
+        </div>
+        <div class="control">
+          <label>&nbsp;</label>
+          <button type="button" id="seed">Reseed</button>
+        </div>
+        <div class="control">
+          <label>&nbsp;</label>
+          <button type="button" id="pause">Pause</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="spell-footer">AbraKadaVra💀 · Turing Skin · Gray–Scott reaction–diffusion</p>
+    <script type="module" src="turing.js"></script>
+  </body>
+</html>

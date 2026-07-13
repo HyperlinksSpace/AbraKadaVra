@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phyllotaxis Bone — AbraKadaVra💀</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/grimoire.css" />
+  </head>
+  <body class="spell-page">
+    <nav class="site-nav">
+      <a class="brand-mark" href="../index.html">AbraKadaVra<span class="skull">💀</span></a>
+      <a href="../index.html#spells">All spells</a>
+    </nav>
+
+    <header class="spell-header">
+      <p class="law">Golden angle · Optimal packing</p>
+      <h1>Phyllotaxis Bone</h1>
+      <p>
+        Turn ~137.5° each time — the golden angle — and points fill a disk without
+        wasting space. Sunflowers, pinecones, and Romanesco broccoli all speak this
+        irrational tongue. Irrationality as architecture.
+      </p>
+    </header>
+
+    <div class="stage-wrap">
+      <div class="stage">
+        <canvas id="c"></canvas>
+      </div>
+      <div class="controls">
+        <div class="control">
+          <label for="count">Seeds <span class="val" id="count-val"></span></label>
+          <input id="count" type="range" min="50" max="2000" step="10" value="800" />
+        </div>
+        <div class="control">
+          <label for="angle">Angle ° <span class="val" id="angle-val"></span></label>
+          <input id="angle" type="range" min="120" max="160" step="0.05" value="137.5" />
+        </div>
+        <div class="control">
+          <label for="spin">Spin <span class="val" id="spin-val"></span></label>
+          <input id="spin" type="range" min="0" max="2" step="0.01" value="0.25" />
+        </div>
+        <div class="control">
+          <label for="mode">Form</label>
+          <select id="mode">
+            <option value="disk">Disk</option>
+            <option value="flare">Flare</option>
+            <option value="bones">Ribcage</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <p class="spell-footer">
+      AbraKadaVra💀 · Phyllotaxis Bone · Vogel model · golden angle ≈ 137.507…
+    </p>
+    <script type="module" src="phyllotaxis.js"></script>
+  </body>
+</html>

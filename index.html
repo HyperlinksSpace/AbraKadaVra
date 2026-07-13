@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AbraKadaVra💀 — Algorithmic Grimoire</title>
+    <meta
+      name="description"
+      content="AbraKadaVra💀 — a digital grimoire of algorithm-generated beauty: chaos, morphogenesis, gravity, waves, and growth."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/grimoire.css" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a class="brand-mark" href="index.html">AbraKadaVra<span class="skull">💀</span></a>
+      <a href="#spells">Enter the spells</a>
+    </nav>
+
+    <header class="hero">
+      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <p class="hero-line">Digital Grimoire</p>
+        <h1 class="hero-brand">AbraKadaVra<span class="skull">💀</span></h1>
+        <p class="hero-sub">
+          Speak the name. Watch the universe answer — not with miracles, but with
+          mathematics it already believed in.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#spells">Open the grimoire</a>
+          <a class="btn btn-ghost" href="spells/chaos.html">First spell</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="spells">
+      <div class="section-head">
+        <h2>Six spells</h2>
+        <p>
+          Each one is a different principle — chaos, chemistry, packing, gravity,
+          interference, growth. None are Mandelbrot cousins. All are laws the cosmos
+          already runs when nobody is looking.
+        </p>
+      </div>
+
+      <div class="spell-grid">
+        <a class="spell-link" href="spells/chaos.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="chaos"></canvas>
+            <div class="spell-meta">
+              <p class="law">Chaos · Sensitive dependence</p>
+              <h3>Chaos Sigil</h3>
+              <p>Strange attractors — infinite lace from three coupled equations.</p>
+            </div>
+          </article>
+        </a>
+
+        <a class="spell-link" href="spells/turing.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="turing"></canvas>
+            <div class="spell-meta">
+              <p class="law">Morphogenesis · Reaction–diffusion</p>
+              <h3>Turing Skin</h3>
+              <p>How spots and stripes invent themselves from two chemicals.</p>
+            </div>
+          </article>
+        </a>
+
+        <a class="spell-link" href="spells/phyllotaxis.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="phyllotaxis"></canvas>
+            <div class="spell-meta">
+              <p class="law">Golden angle · Optimal packing</p>
+              <h3>Phyllotaxis Bone</h3>
+              <p>Sunflowers and pinecones: the spiral that wastes no space.</p>
+            </div>
+          </article>
+        </a>
+
+        <a class="spell-link" href="spells/gravity.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="gravity"></canvas>
+            <div class="spell-meta">
+              <p class="law">Gravitation · N-body dance</p>
+              <h3>Orbital Hex</h3>
+              <p>Masses chasing mass — orbits, slingshots, and soft collisions.</p>
+            </div>
+          </article>
+        </a>
+
+        <a class="spell-link" href="spells/waves.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="waves"></canvas>
+            <div class="spell-meta">
+              <p class="law">Superposition · Interference</p>
+              <h3>Interference Veil</h3>
+              <p>Waves pass through each other and paint standing geometries.</p>
+            </div>
+          </article>
+        </a>
+
+        <a class="spell-link" href="spells/dla.html">
+          <article class="spell">
+            <canvas class="spell-preview" data-preview="dla"></canvas>
+            <div class="spell-meta">
+              <p class="law">Aggregation · Random walk</p>
+              <h3>Bone Growth</h3>
+              <p>Lightning, coral, frost — beauty born from sticky chance.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        <span class="brand">AbraKadaVra💀</span> — algorithms wearing a ritual mask.<br />
+        Inspired by curiosity, not copies. MIT. Open the console if you must.
+      </p>
+    </footer>
+
+    <script type="module" src="js/hero.js"></script>
+    <script type="module" src="js/previews.js"></script>
+  </body>
+</html>
