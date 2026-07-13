@@ -53,7 +53,7 @@ function makePhyllo(n) {
   return pts;
 }
 
-function makeTuringField(n, m, seed = 77) {
+function makeTuringField(n = 56, m = 40, seed = 77) {
   const rng = mulberry32(seed);
   let A = new Float32Array(n * m);
   let B = new Float32Array(n * m);
@@ -61,48 +61,102 @@ function makeTuringField(n, m, seed = 77) {
     A[i] = 1;
     B[i] = 0;
   }
-  for (let k = 0; k < 35; k++) {
+  // denser seeds so the pattern always ignites
+  for (let k = 0; k < 70; k++) {
     const cx = (rng() * n) | 0;
     const cy = (rng() * m) | 0;
-    for (let dy = -2; dy <= 2; dy++)
-      for (let dx = -2; dx <= 2; dx++) {
-        B[((cy + dy + m) % m) * n + ((cx + dx + n) % n)] = 1;
+    const rad = 2 + ((rng() * 3) | 0);
+    for (let dy = -rad; dy <= rad; dy++)
+      for (let dx = -rad; dx <= rad; dx++) {
+        if (dx * dx + dy * dy > rad * rad) continue;
+        const i = ((cy + dy + m) % m) * n + ((cx + dx + n) % n);
+        B[i] = 0.8 + rng() * 0.2;
+        A[i] = 0.4;
       }
   }
+
+  // Gray–Scott spots (stable, pretty)
+  const Da = 1.0,
+    Db = 0.5,
+    f = 0.035,
+    k = 0.06,
+    dt = 1.0;
+
   const lap = (arr, x, y) =>
     arr[((y - 1 + m) % m) * n + x] +
     arr[((y + 1) % m) * n + x] +
     arr[y * n + ((x - 1 + n) % n)] +
     arr[y * n + ((x + 1) % n)] -
     4 * arr[y * n + x];
-  for (let s = 0; s < 90; s++) {
+
+  for (let s = 0; s < 420; s++) {
     const nA = new Float32Array(A.length);
     const nB = new Float32Array(B.length);
-    for (let y = 0; y < m; y++)
+    for (let y = 0; y < m; y++) {
       for (let x = 0; x < n; x++) {
         const i = y * n + x;
-        const a = A[i],
-          b = B[i];
+        const a = A[i];
+        const b = B[i];
         const abb = a * b * b;
-        nA[i] = a + 1.0 * lap(A, x, y) - abb + 0.037 * (1 - a);
-        nB[i] = b + 0.5 * lap(B, x, y) + abb - 0.097 * b;
+        nA[i] = a + (Da * lap(A, x, y) - abb + f * (1 - a)) * dt;
+        nB[i] = b + (Db * lap(B, x, y) + abb - (k + f) * b) * dt;
       }
+    }
     A = nA;
     B = nB;
   }
+
+  // Build a full 3D skin: base grid + raised pattern from B
   const pts = [];
-  for (let y = 0; y < m; y += 1)
-    for (let x = 0; x < n; x += 1) {
-      const v = clamp(B[y * n + x] * 2.1, 0, 1);
-      if (v < 0.08) continue;
+  for (let y = 0; y < m; y++) {
+    for (let x = 0; x < n; x++) {
+      const v = clamp(B[y * n + x] * 2.4, 0, 1);
+      const wx = (x / (n - 1) - 0.5) * 2.15;
+      const wy = (0.5 - y / (m - 1)) * 1.45;
+      // always place a surface point so the preview is never empty
       pts.push({
-        x: (x / n - 0.5) * 2.1,
-        y: (0.5 - y / m) * 1.4,
-        z: v * 0.55 - 0.1,
-        t: v,
-        r: 1.1 + v * 2,
+        x: wx,
+        y: wy,
+        z: 0.08 + v * 0.62,
+        t: 0.12 + v * 0.75,
+        r: 1.35 + v * 2.6,
+      });
+      // denser accents on peaks
+      if (v > 0.35) {
+        pts.push({
+          x: wx + (rng() - 0.5) * 0.03,
+          y: wy + (rng() - 0.5) * 0.03,
+          z: 0.2 + v * 0.7,
+          t: 0.35 + v * 0.55,
+          r: 1.6 + v * 2.2,
+        });
+      }
+    }
+  }
+
+  // safety net: synthetic hills if RD somehow collapsed
+  if (pts.filter((p) => p.t > 0.3).length < 40) {
+    for (let i = 0; i < 500; i++) {
+      const u = rng();
+      const v = rng();
+      const wx = (u - 0.5) * 2.1;
+      const wy = (0.5 - v) * 1.4;
+      const hills =
+        0.5 +
+        0.5 *
+          Math.sin(u * 18 + 0.3) *
+          Math.sin(v * 14 + 1.1) *
+          Math.sin((u + v) * 9);
+      pts.push({
+        x: wx,
+        y: wy,
+        z: hills * 0.55,
+        t: hills,
+        r: 1.4 + hills * 2,
       });
     }
+  }
+
   return { pts, B, n, m, A };
 }
 
@@ -339,7 +393,7 @@ function bootPreview(stage) {
 
   if (kind === "chaos") chaosPts = sampleClifford(5000, 3);
   if (kind === "phyllotaxis") phylloPts = makePhyllo(420);
-  if (kind === "turing") turing = makeTuringField(48, 32);
+  if (kind === "turing") turing = makeTuringField(56, 40, 91);
   if (kind === "dla") dlaPts = makeDla(2200);
   if (kind === "gravity") bodies = createLiveGravity(42);
 

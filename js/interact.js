@@ -139,6 +139,7 @@ export function bindOrbit(el, orbit, opts = {}) {
   };
 
   const onWheel = (e) => {
+    if (opts.wheel === false) return;
     e.preventDefault();
     orbit.interacted = true;
     orbit.zoom *= e.deltaY > 0 ? 0.94 : 1.06;
@@ -152,8 +153,10 @@ export function bindOrbit(el, orbit, opts = {}) {
   el.addEventListener("pointerup", onUp);
   el.addEventListener("pointercancel", onUp);
   el.addEventListener("pointerleave", onLeave);
-  el.addEventListener("wheel", onWheel, { passive: false });
-  el.style.touchAction = "none";
+  if (opts.wheel !== false) {
+    el.addEventListener("wheel", onWheel, { passive: false });
+  }
+  el.style.touchAction = opts.wheel === false ? "pan-y" : "none";
   el.classList.add("is-interactive");
 
   return {
@@ -163,7 +166,7 @@ export function bindOrbit(el, orbit, opts = {}) {
       el.removeEventListener("pointerup", onUp);
       el.removeEventListener("pointercancel", onUp);
       el.removeEventListener("pointerleave", onLeave);
-      el.removeEventListener("wheel", onWheel);
+      if (opts.wheel !== false) el.removeEventListener("wheel", onWheel);
     },
   };
 }
