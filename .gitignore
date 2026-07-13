@@ -1,0 +1,4 @@
+bash.exe.stackdump
+*.stackdump
+.DS_Store
+Thumbs.db
